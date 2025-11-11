@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Food | ReFood</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>🍱 Add a Food Listing</h2>
+  <form id="foodForm">
+    <input type="text" id="title" placeholder="Food title (e.g., 20 meals - veg)" required><br>
+    <textarea id="description" placeholder="Description (e.g., packed, fresh, best before 2 hrs)" required></textarea><br>
+    <input type="number" id="quantity" placeholder="Quantity" required><br>
+    <input type="text" id="lat" placeholder="Latitude" required><br>
+    <input type="text" id="lng" placeholder="Longitude" required><br>
+    <button type="submit">Post Listing</button>
+  </form>
+
+  <script type="module">
+    // ✅ Import Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+    import { getDatabase, ref, push, set, serverTimestamp } 
+      from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+
+    // ✅ Your Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDwRxRdw9-IcdQFOIZlMuCSwXggMjNgLDo",
+      authDomain: "refood-d02c3.firebaseapp.com",
+      databaseURL: "https://refood-d02c3-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "refood-d02c3",
+      storageBucket: "refood-d02c3.firebasestorage.app",
+      messagingSenderId: "229281434547",
+      appId: "1:229281434547:web:a6028e8293421aa60959c6",
+      measurementId: "G-Q6WXVK4TTN"
+    };
+
+    // ✅ Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // ✅ Form submission handler
+    const form = document.getElementById('foodForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById('title').value;
+      const description = document.getElementById('description').value;
+      const quantity = parseInt(document.getElementById('quantity').value);
+      const lat = parseFloat(document.getElementById('lat').value);
+      const lng = parseFloat(document.getElementById('lng').value);
+
+      try {
+        const newListingRef = push(ref(db, 'listings/'));
+        await set(newListingRef, {
+          title,
+          description,
+          quantity,
+          lat,
+          lng,
+          status: "available",
+          createdAt: serverTimestamp()
+        });
+
+        alert("✅ Food listing added successfully!");
+        form.reset();
+      } catch (error) {
+        console.error("Error adding listing:", error);
+        alert("❌ Error adding listing. Check console for details.");
+      }
+    });
+  </script>
+</body>
+</html>

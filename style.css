@@ -1,0 +1,105 @@
+/* =======================
+   General body styling
+======================= */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fafafa;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #333;
+}
+
+/* Header styling */
+h1, h2 {
+  color: #4CAF50;
+  margin-top: 20px;
+}
+
+/* Paragraphs */
+p {
+  margin: 10px auto;
+  font-size: 16px;
+  max-width: 600px;
+}
+
+/* Buttons and links */
+button, #addBtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px 0;
+  transition: 0.3s;
+}
+
+button:hover, #addBtn:hover {
+  background-color: #45a049;
+}
+
+/* Form styling */
+form {
+  display: inline-block;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin: 20px auto;
+}
+
+input, textarea, select {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Map container */
+#map {
+  width: 90%;
+  height: 70vh;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  input, textarea {
+    width: 95%;
+  }
+
+  #map {
+    width: 95%;
+    height: 60vh;
+  }
+}
+
+/* =======================
+   Button class for links
+======================= */
+.btn {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background: #4CAF50;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #45a049;
+}
